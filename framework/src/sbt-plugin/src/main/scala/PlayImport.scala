@@ -128,6 +128,8 @@ object PlayImport {
 
     val routesImport = SettingKey[Seq[String]]("play-routes-imports")
 
+    val routesGeneratedSrcDir = SettingKey[File]("play-routes-generated-src-dir")
+
     val generateReverseRouter = SettingKey[Boolean]("play-generate-reverse-router",
       "Whether the reverse router should be generated. Setting to false may reduce compile times if it's not needed.")
 

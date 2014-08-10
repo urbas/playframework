@@ -114,7 +114,11 @@ trait PlaySettings {
 
     namespaceReverseRouter := false,
 
-    sourceGenerators in Compile <+= (state, confDirectory, sourceManaged in Compile, routesImport, generateReverseRouter, generateRefReverseRouter, namespaceReverseRouter) map {
+    routesGeneratedSrcDir := (sourceManaged in Compile).value / "play-routes",
+
+    managedSourceDirectories in Compile += routesGeneratedSrcDir.value,
+
+    sourceGenerators in Compile <+= (state, confDirectory, routesGeneratedSrcDir, routesImport, generateReverseRouter, generateRefReverseRouter, namespaceReverseRouter) map {
       (s, cd, sm, ri, grr, grrr, nrr) => RouteFiles(s, Seq(cd), sm, ri, grr, grrr, nrr)
     },
 
